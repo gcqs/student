@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,28 +14,33 @@ import biz.zc.dao.studentDao;
 import biz.zc.pojo.Student;
 
 /**
- * Servlet implementation class addServlet
+ * Servlet implementation class alterServlet
  */
-public class addServlet extends HttpServlet {
+public class alterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public addServlet() {
+    public alterServlet() {
+        super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+
+		request.setCharacterEncoding("utf-8");;
 		String name = request.getParameter("name");
 		String birthday = request.getParameter("birthday");
 		String description = request.getParameter("description");
 		String avg = request.getParameter("avg");
-		System.out.println("+++"+name);
-		Student student = new Student();
+	    String id = request.getParameter("id");
+	    
+	    Student student = new Student();
+	    student.setId(id);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date;
 		try {
@@ -50,14 +54,11 @@ public class addServlet extends HttpServlet {
 		student.setAvg(Integer.parseInt(avg));
 		student.setDescription(description);
 		student.setName(name);
-		
-		
-		studentDao addDao = new studentDao();
-		addDao.addstudent(student);
-		
+	    
+	    studentDao alter = new studentDao();
+	    alter.alterDao(student);
+
 		response.sendRedirect("findServlet");
-		
-		
 	}
 
 	/**

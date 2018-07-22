@@ -31,14 +31,17 @@ public class test1 {
 		
 		//System.out.println(jedis.ping());
 		Jedis jedis = new Jedis("47.104.218.152");
+		System.out.println(jedis.keys("student"));
+		jedis.close();
+		
 //		jedis.rpush("student", "1");
 //		Long llen = (Long)jedis.llen("student")-1;
 //		System.out.println(llen);
 //		List<String> list = jedis.lrange("student", llen, -1);
 //		System.out.println(list);
-		
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("name", "wangwu");
+//		
+//		Map<String,String> map = new HashMap<String,String>();
+//		map.put("name", "wangwu");
 		//jedis.hmset("1", map);
 	    //System.out.println(jedis.hgetAll("myhash"));
 		//System.out.println(jedis.hget("myhash", "1"));
